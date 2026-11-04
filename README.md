@@ -58,10 +58,3 @@ Angular CLI does not come with an end-to-end testing framework by default. You c
 
 For more information on using the Angular CLI, including detailed command references, visit the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) page.
 
-## Creación de componentes como en clase
-
-Los nuevos componentes se generan con Angular CLI:
-
-```bash
-ng g component components/ejemploComponent --standalone=false --skip-tests=false
-```
