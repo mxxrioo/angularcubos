@@ -1,7 +1,7 @@
 <nav class="border-b border-gray-300 bg-white" aria-label="Navegación principal">
   <div class="mx-auto flex max-w-6xl flex-wrap items-center gap-6 px-4 py-4">
-    <a [routerLink]="['/']" class="text-xl font-bold"><img src="assets/images/ftocubo.jpg" alt="Logo" class="h-8 w-8 inline-block ">HOME CUBOS</a>
-    
+    <a [routerLink]="['/']" class="text-xl font-bold"><img src="/public/assets/images/ftocubo.jpg" alt="Logo" class="h-8 w-8 inline-block ">HOME CUBOS</a>
+
     <a [routerLink]="['/']" class="nav-link">Home</a>
 
     <details #marcasMenu class="relative">
@@ -22,7 +22,7 @@
 
       <button type="button" (click)="logOutUsuario()" class="nav-link">Cerrar sesión</button>
 
-      <span class="flex items-center gap-2"><img src="assets/images/ftouser.jpg" alt="Avatar de perfil" class="h-8 w-8">{{dato.nombre}}</span>
+      <span class="flex items-center gap-2"><img src="/public/assets/images/ftouser.jpg" alt="Avatar de perfil" class="h-8 w-8">{{dato.nombre}}</span>
     } @else {
       <a [routerLink]="['/login']" class="nav-link">Iniciar sesión</a>
 
