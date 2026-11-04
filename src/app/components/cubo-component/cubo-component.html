@@ -1,0 +1,18 @@
+<div class="flex h-full flex-col overflow-hidden rounded border border-gray-300">
+  <img [src]="cubo.imagen || 'assets/images/cubo.svg'" [alt]="cubo.nombre" (error)="imagenError($event)" loading="lazy"
+   class="h-56 w-full object-contain p-3">
+  <div class="flex flex-1 flex-col p-4">
+    <h2 class="mb-2 text-xl font-bold">{{cubo.nombre}}</h2>
+
+    <p><strong>Precio:</strong> {{cubo.precio | currency:'EUR'}}</p>
+    <p class="mt-1"><strong>Marca:</strong> {{cubo.marca}}</p>
+    <p class="mt-1 text-sm text-gray-600">Modelo: {{cubo.modelo}} | Valoración: {{cubo.valoracion}}/5</p>
+
+    <div class="mt-auto flex flex-wrap gap-3 pt-4">
+      <button type="button" (click)="seleccionarFavorito()" [attr.aria-pressed]="favorito"
+       class="rounded border border-gray-400 px-3 py-2 text-sm hover:bg-gray-100">
+        {{favorito ? 'Favorito seleccionado' : 'Favorito'}}</button>
+      <a [routerLink]="['/comprar', cubo.idCubo]" class="btn-primary">Comprar</a>
+    </div>
+  </div>
+</div>

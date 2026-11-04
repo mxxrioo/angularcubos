@@ -1,0 +1,24 @@
+<h1 class="mb-5 text-2xl font-bold">Mis compras</h1>
+<button type="button" class="btn-primary mb-5" [disabled]="cargando || error || generando" (click)="generarInforme()">{{generando ? 'Generando PDF...' : 'Descargar informe PDF'}}</button>
+@if (cargando) {
+  <p role="status">Cargando compras...</p>
+} @else if (error) {
+  <div role="alert"><p>No se han podido cargar las compras.</p><button type="button" class="btn-primary mt-3" (click)="cargarCompras()">Reintentar</button></div>
+} @else {
+  <div class="overflow-x-auto">
+    <table class="w-full border-collapse text-left">
+      <thead class="bg-gray-100"><tr><th class="border border-gray-300 p-3">Id pedido</th>
+        <th class="border border-gray-300 p-3">Cubo</th><th class="border border-gray-300 p-3">Marca</th>
+        <th class="border border-gray-300 p-3">Fecha</th></tr>
+      </thead>
+      <tbody>
+        @for (compra of compras; track compra.idPedido) {
+          <tr><td class="border border-gray-300 p-3">{{compra.idPedido}}</td>
+            <td class="border border-gray-300 p-3">{{buscarCubo(compra.idCubo)?.nombre || 'Cubo ' + compra.idCubo}}</td>
+            <td class="border border-gray-300 p-3">{{buscarCubo(compra.idCubo)?.marca || '—'}}</td>
+            <td class="border border-gray-300 p-3">{{compra.fechaPedido | date:'dd/MM/yyyy'}}</td></tr>
+        } @empty { <tr><td colspan="4" class="border border-gray-300 p-4">No has realizado compras.</td></tr> }
+      </tbody>
+    </table>
+  </div>
+}

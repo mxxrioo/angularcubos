@@ -1,0 +1,18 @@
+<h1 class="mb-5 text-2xl font-bold">{{marca ? 'Cubos de la marca ' + marca : 'Todos los cubos'}}</h1>
+@if (favorito) {
+  <aside class="mb-5 border border-blue-300 bg-blue-50 p-4" aria-live="polite">
+    <p><strong>Mi cubo favorito:</strong> {{favorito.nombre}} - {{favorito.marca}}</p>
+    <button type="button" (click)="favorito = null" class="mt-2 text-sm text-blue-700">Quitar favorito</button>
+  </aside>
+}
+@if (cargando) {
+  <p role="status">Cargando cubos...</p>
+} @else if (error) {
+  <div role="alert"><p>No se han podido cargar los cubos.</p><button type="button" class="btn-primary mt-3" (click)="cargarCubos()">Reintentar</button></div>
+} @else {
+  <div class="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+    @for (cubo of cubos; track cubo.idCubo) {
+      <app-cubo-component [cubo]="cubo" [favorito]="favorito?.idCubo === cubo.idCubo" (seleccionarFavoritoPadre)="seleccionarFavoritoPadre($event)"></app-cubo-component>
+    } @empty { <p>No hay cubos de esta marca.</p> }
+  </div>
+}

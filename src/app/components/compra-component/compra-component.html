@@ -1,0 +1,14 @@
+<h1 class="mb-5 text-2xl font-bold">Realizar compra</h1>
+@if (cargando) { <p role="status">Cargando cubo...</p> }
+@if (cubo && !cargando) {
+  <div class="max-w-lg rounded border border-gray-300 p-5">
+    <img [src]="cubo.imagen || 'assets/images/cubo.svg'" [alt]="cubo.nombre" class="mb-4 h-56 max-w-full object-contain" (error)="imagen.src = 'assets/images/cubo.svg'" #imagen>
+    <h2 class="mb-3 text-xl font-bold">{{cubo.nombre}}</h2>
+    <p class="mb-2"><strong>Marca:</strong> {{cubo.marca}}</p>
+    <p class="mb-4"><strong>Precio:</strong> {{cubo.precio | currency:'EUR'}}</p>
+    <button type="button" class="btn-primary" [disabled]="comprando" (click)="realizarCompra()">
+      {{comprando ? 'Comprando...' : 'Confirmar compra'}}</button>
+  </div>
+}
+@if (error) { <p class="mt-4 text-red-700" role="alert">{{error}}</p> }
+<a [routerLink]="['/']" class="mt-5 inline-block text-blue-700 underline">Volver a Home</a>

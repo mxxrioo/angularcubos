@@ -1,0 +1,12 @@
+<h1 class="mb-5 text-2xl font-bold">Mi perfil</h1>
+@if (usuario(); as dato) {
+  <div class="max-w-lg border border-gray-300 p-5">
+    <img src="assets/images/ftouser.jpg" alt="Avatar de perfil" class="mb-4 h-24 w-24">
+
+    <p class="mb-3"><strong>Nombre:</strong> {{dato.nombre}}</p>
+    <p class="mb-3"><strong>Email:</strong> {{dato.email}}</p>
+    <p><strong>Id usuario:</strong> {{dato.idUsuario}}</p>
+
+    <a [routerLink]="['/compras']" class="btn-primary mt-5">Mis compras</a>
+  </div>
+} @else { <h1>{{mensaje}}</h1> <!-- <p role="status">Cargando perfil...</p> --> }

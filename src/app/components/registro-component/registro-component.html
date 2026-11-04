@@ -1,0 +1,20 @@
+<div class="max-w-md">
+  <h1 class="mb-5 text-2xl font-bold">Registro de usuario</h1>
+
+  <form #formregistro="ngForm" (ngSubmit)="formregistro.valid && registrarUsuario()"
+   class="space-y-4">
+    
+    <div><label for="nombre" class="label">Nombre:</label>
+      <input id="nombre" name="nombre" #cajanombre ngModel required maxlength="100" autocomplete="name" class="input"></div>
+    
+      <div><label for="email" class="label">Email:</label>
+      <input id="email" name="email" #cajaemail ngModel type="email" email required maxlength="200" autocomplete="email" class="input"></div>
+    
+      <div><label for="password" class="label">Contraseña:</label>
+      <input id="password" name="password" #cajapassword ngModel type="password" required minlength="5" autocomplete="new-password" class="input">
+      <p class="mt-1 text-sm text-gray-500">Mínimo 5 caracteres.</p></div>
+    
+      @if (error) { <p class="text-red-700" role="alert">{{error}}</p> }
+    <button class="btn-primary" [disabled]="formregistro.invalid || enviando">{{enviando ? 'Registrando...' : 'Registrar'}}</button>
+  </form>
+</div>

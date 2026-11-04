@@ -1,0 +1,32 @@
+<nav class="border-b border-gray-300 bg-white" aria-label="Navegación principal">
+  <div class="mx-auto flex max-w-6xl flex-wrap items-center gap-6 px-4 py-4">
+    <a [routerLink]="['/']" class="text-xl font-bold"><img src="assets/images/ftocubo.jpg" alt="Logo" class="h-8 w-8 inline-block ">HOME CUBOS</a>
+    
+    <a [routerLink]="['/']" class="nav-link">Home</a>
+
+    <details #marcasMenu class="relative">
+      <summary>Marcas</summary>
+      <ul class="absolute left-0 z-20 mt-2 w-52 rounded border border-gray-300 bg-white p-2 shadow">
+        @for (marca of marcas; track marca) {
+          <li><a [routerLink]="['/marca', marca]" (click)="marcasMenu.open = false" class="block p-2 hover:bg-gray-100">{{marca}}</a></li>
+        }
+        @if (errorMarcas) { <li>No se han podido cargar las marcas.</li> }
+        @if (!errorMarcas && marcas.length === 0) { <li>Cargando marcas...</li> }
+      </ul>
+    </details>
+
+    @if (usuario(); as dato) {
+      <a [routerLink]="['/perfil']" class="nav-link">Mi perfil</a>
+
+      <a [routerLink]="['/compras']" class="nav-link">Mis compras</a>
+
+      <button type="button" (click)="logOutUsuario()" class="nav-link">Cerrar sesión</button>
+
+      <span class="flex items-center gap-2"><img src="assets/images/ftouser.jpg" alt="Avatar de perfil" class="h-8 w-8">{{dato.nombre}}</span>
+    } @else {
+      <a [routerLink]="['/login']" class="nav-link">Iniciar sesión</a>
+
+      <a [routerLink]="['/registro']" class="nav-link">Registro</a>
+    }
+  </div>
+</nav>
